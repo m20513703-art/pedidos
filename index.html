@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDV de Pedidos - Climatização</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOPO -->
+    <header class="topo">
+
+        <div class="logo-area">
+            <div class="logo">❄️</div>
+
+            <div>
+                <h1>Climatização</h1>
+                <span>PDV de Pedidos</span>
+            </div>
+        </div>
+
+        <div class="usuario">
+            <span>Administrador</span>
+            <div class="usuario-icon">👤</div>
+        </div>
+
+    </header>
+
+
+    <!-- MENU LATERAL -->
+    <aside class="menu-lateral">
+
+        <div class="menu-titulo">
+            MENU
+        </div>
+
+        <button class="menu-item ativo" data-pagina="inicio">
+            <span>🏠</span>
+            <span>Início</span>
+        </button>
+
+        <button class="menu-item" data-pagina="pedidos">
+            <span>📋</span>
+            <span>Pedidos</span>
+        </button>
+
+        <button class="menu-item" data-pagina="clientes">
+            <span>👥</span>
+            <span>Clientes</span>
+        </button>
+
+        <button class="menu-item" data-pagina="servicos">
+            <span>🔧</span>
+            <span>Serviços</span>
+        </button>
+
+        <button class="menu-item" data-pagina="tecnicos">
+            <span>👨‍🔧</span>
+            <span>Técnicos</span>
+        </button>
+
+        <button class="menu-item" data-pagina="ferramentas">
+            <span>🧰</span>
+            <span>Ferramentas</span>
+        </button>
+
+        <button class="menu-item" data-pagina="agenda">
+            <span>📅</span>
+            <span>Agenda</span>
+        </button>
+
+        <button class="menu-item" data-pagina="relatorios">
+            <span>📊</span>
+            <span>Relatórios</span>
+        </button>
+
+        <button class="menu-item" data-pagina="configuracao">
+            <span>⚙️</span>
+            <span>Configuração</span>
+        </button>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="conteudo">
+
+
+        <!-- INÍCIO -->
+        <section id="inicio" class="pagina ativa-pagina">
+
+            <div class="pagina-topo">
+                <div>
+                    <h2>Painel do PDV</h2>
+                    <p>Controle seus pedidos e serviços.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="novo-pedido">
+                    + Novo Pedido
+                </button>
+            </div>
+
+
+            <div class="cards-resumo">
+
+                <div class="card-resumo">
+                    <div class="card-icone">📋</div>
+
+                    <div>
+                        <span>Pedidos hoje</span>
+                        <strong id="totalPedidos">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="card-resumo">
+                    <div class="card-icone">⏳</div>
+
+                    <div>
+                        <span>Pendentes</span>
+                        <strong id="totalPendentes">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="card-resumo">
+                    <div class="card-icone">🔧</div>
+
+                    <div>
+                        <span>Serviços</span>
+                        <strong id="totalServicos">0</strong>
+                    </div>
+                </div>
+
+
+                <div class="card-resumo">
+                    <div class="card-icone">👥</div>
+
+                    <div>
+                        <span>Clientes</span>
+                        <strong id="totalClientes">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="painel">
+
+                <div class="painel-topo">
+                    <div>
+                        <h3>Pedidos recentes</h3>
+                        <p>Últimos pedidos cadastrados.</p>
+                    </div>
+
+                    <button class="btn-secundario" data-pagina="pedidos">
+                        Ver todos
+                    </button>
+                </div>
+
+                <div id="pedidosRecentes" class="lista-vazia">
+                    <div>📋</div>
+                    <h3>Nenhum pedido cadastrado</h3>
+                    <p>Os pedidos criados aparecerão aqui.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PEDIDOS -->
+        <section id="pedidos" class="pagina">
+
+            <div class="pagina-topo">
+                <div>
+                    <h2>Pedidos</h2>
+                    <p>Gerencie todos os pedidos do sistema.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="novo-pedido">
+                    + Novo Pedido
+                </button>
+            </div>
+
+
+            <div class="barra-pesquisa">
+
+                <input
+                    type="text"
+                    id="pesquisaPedido"
+                    placeholder="Pesquisar pedido, cliente ou serviço..."
+                >
+
+                <select id="filtroStatus">
+                    <option value="todos">Todos os status</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Agendado">Agendado</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluído">Concluído</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+
+            </div>
+
+
+            <div id="listaPedidos" class="lista-cards">
+
+                <div class="lista-vazia">
+                    <div>📋</div>
+                    <h3>Nenhum pedido cadastrado</h3>
+                    <p>Clique em "Novo Pedido" para começar.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CLIENTES -->
+        <section id="clientes" class="pagina">
+
+            <div class="pagina-topo">
+                <div>
+                    <h2>Clientes</h2>
+                    <p>Cadastro e controle dos clientes.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="novo-cliente">
+                    + Novo Cliente
+                </button>
+            </div>
+
+
+            <div class="barra-pesquisa">
+
+                <input
+                    type="text"
+                    id="pesquisaCliente"
+                    placeholder="Pesquisar cliente..."
+                >
+
+            </div>
+
+
+            <div id="listaClientes" class="lista-cards">
+
+                <div class="lista-vazia">
+                    <div>👥</div>
+                    <h3>Nenhum cliente cadastrado</h3>
+                    <p>Cadastre o primeiro cliente.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SERVIÇOS -->
+        <section id="servicos" class="pagina">
+
+            <div class="pagina-topo">
+                <div>
+                    <h2>Serviços</h2>
+                    <p>Cadastre e organize os serviços oferecidos.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="novo-servico">
+                    + Novo Serviço
+                </button>
+            </div>
+
+
+            <div id="listaServicos" class="lista-cards">
+
+                <div class="lista-vazia">
+                    <div>🔧</div>
+                    <h3>Nenhum serviço cadastrado</h3>
+                    <p>Cadastre os serviços da empresa.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TÉCNICOS -->
+        <section id="tecnicos" class="pagina">
+
+            <div class="pagina-topo">
+                <div>
+                    <h2>Técnicos</h2>
+                    <p>Controle sua equipe técnica.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="novo-tecnico">
+                    + Novo Técnico
+                </button>
+            </div>
+
+
+            <div id="listaTecnicos" class="lista-cards">
+
+                <div class="lista-vazia">
+                    <div>👨‍🔧</div>
+                    <h3>Nenhum técnico cadastrado</h3>
+                    <p>Cadastre os técnicos da empresa.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FERRAMENTAS -->
+        <section id="ferramentas" class="pagina">
+
+            <div class="pagina-topo">
+                <div>
+                    <h2>Ferramentas</h2>
+                    <p>Controle das ferramentas utilizadas pela equipe.</p>
+                </div>
+
+                <button class="btn-principal" data-acao="nova-ferramenta">
+                    + Nova Ferramenta
+                </button>
+            </div>
+
+
+            <div id="listaFerramentas" class="lista-cards">
+
+                <div class="lista-vazia">
+                    <div>🧰</div>
+                    <h3>Nenhuma ferramenta cadastrada</h3>
+                    <p>Cadastre as ferramentas da empresa.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- AGENDA -->
+        <section id="agenda" class="pagina">
+
+            <div class="pagina-topo">
+
+                <div>
+                    <h2>Agenda</h2>
+                    <p>Visualize os serviços agendados.</p>
+                </div>
+
+            </div>
+
+
+            <div class="painel">
+
+                <div class="lista-vazia">
+                    <div>📅</div>
+                    <h3>Agenda</h3>
+                    <p>
+                        Os serviços agendados aparecerão aqui.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RELATÓRIOS -->
+        <section id="relatorios" class="pagina">
+
+            <div class="pagina-topo">
+
+                <div>
+                    <h2>Relatórios</h2>
+                    <p>Informações e resultados do PDV.</p>
+                </div>
+
+            </div>
+
+
+            <div class="cards-relatorios">
+
+                <div class="relatorio-card">
+                    <span>📋</span>
+                    <h3>Pedidos</h3>
+                    <p>Quantidade total de pedidos.</p>
+                    <strong id="relatorioPedidos">0</strong>
+                </div>
+
+
+                <div class="relatorio-card">
+                    <span>👥</span>
+                    <h3>Clientes</h3>
+                    <p>Quantidade de clientes cadastrados.</p>
+                    <strong id="relatorioClientes">0</strong>
+                </div>
+
+
+                <div class="relatorio-card">
+                    <span>🔧</span>
+                    <h3>Serviços</h3>
+                    <p>Quantidade de serviços cadastrados.</p>
+                    <strong id="relatorioServicos">0</strong>
+                </div>
+
+
+                <div class="relatorio-card">
+                    <span>👨‍🔧</span>
+                    <h3>Técnicos</h3>
+                    <p>Quantidade de técnicos cadastrados.</p>
+                    <strong id="relatorioTecnicos">0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CONFIGURAÇÃO -->
+        <section id="configuracao" class="pagina">
+
+            <div class="pagina-topo">
+
+                <div>
+                    <h2>Configuração</h2>
+                    <p>Configure os cadastros do seu PDV.</p>
+                </div>
+
+            </div>
+
+
+            <div class="config-grid">
+
+                <button class="config-card" data-pagina="tecnicos">
+                    <span>👨‍🔧</span>
+                    <strong>Técnicos</strong>
+                    <small>Gerenciar técnicos</small>
+                </button>
+
+
+                <button class="config-card" data-pagina="clientes">
+                    <span>👥</span>
+                    <strong>Clientes</strong>
+                    <small>Gerenciar clientes</small>
+                </button>
+
+
+                <button class="config-card" data-pagina="servicos">
+                    <span>🔧</span>
+                    <strong>Serviços</strong>
+                    <small>Gerenciar serviços</small>
+                </button>
+
+
+                <button class="config-card" data-pagina="ferramentas">
+                    <span>🧰</span>
+                    <strong>Ferramentas</strong>
+                    <small>Gerenciar ferramentas</small>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+
+        <div class="modal-conteudo">
+
+            <div class="modal-topo">
+
+                <h2 id="modalTitulo">
+                    Novo cadastro
+                </h2>
+
+                <button id="fecharModal" class="fechar-modal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formModal">
+
+                <div id="camposModal"></div>
+
+
+                <div class="modal-acoes">
+
+                    <button
+                        type="button"
+                        id="cancelarModal"
+                        class="btn-secundario"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Salvar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
